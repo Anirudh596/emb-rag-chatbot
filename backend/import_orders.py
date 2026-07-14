@@ -5,8 +5,8 @@ import sqlite3
 def main():
     # Define file paths relative to this script
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    csv_path = os.path.join(current_dir, 'data', 'docs', 'orders.csv')
-    db_path = os.path.join(current_dir, 'data', 'orders.db')
+    csv_path = os.path.join(current_dir, 'app', 'data', 'docs', 'orders.csv')
+    db_path = os.path.join(current_dir, 'app', 'data', 'orders.db')
 
     print(f"Reading CSV from: {csv_path}")
     print(f"Writing DB to: {db_path}")
