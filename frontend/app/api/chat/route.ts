@@ -10,7 +10,14 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Empty message" }, { status: 400 });
   }
 
-  const backendUrl = process.env.BACKEND_URL ?? "http://127.0.0.1:8000";
+  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+  if (!backendUrl) {
+    return NextResponse.json(
+      { error: "Missing NEXT_PUBLIC_BACKEND_URL" },
+      { status: 500 },
+    );
+  }
 
   const upstream = await fetch(`${backendUrl}/api/chat`, {
     method: "POST",
@@ -21,7 +28,7 @@ export async function POST(req: Request) {
   if (!upstream.ok) {
     return NextResponse.json(
       { error: "Backend error" },
-      { status: upstream.status }
+      { status: upstream.status },
     );
   }
 
